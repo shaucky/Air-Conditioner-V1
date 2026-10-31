@@ -6,26 +6,26 @@
 
 ```
 <仓库根>\
-├── Dream Studio\            # Studio 宿主（C# 13.0 / Avalonia 11.3 / net9.0）
-├── Dream Engine\            # 引擎源码模板（ActionScript 3.1 / AIR 50.0）及第三方库 SWC —— 改引擎代码必须改这里
+├── Aircon Studio\            # Studio 宿主（C# 13.0 / Avalonia 11.3 / net9.0）
+├── Aircon Engine\            # 引擎源码模板（ActionScript 3.1 / AIR 50.0）及第三方库 SWC —— 改引擎代码必须改这里
 ├── FlappyTest\              # 当前克隆源：人工测试工程（EnginePaths.TemplateSourcePath 指向它）
-├── .workspace\Project\      # Dream 工作副本 —— 每次 Studio 启动被清空重建，禁止直接编辑
-└── Dream Engine Third Party\  # 第三方库源码（Box2D / Starling）—— 仅本地保留，不入仓库
+├── .workspace\Project\      # Aircon 工作副本 —— 每次 Studio 启动被清空重建，禁止直接编辑
+└── Aircon Engine Third Party\  # 第三方库源码（Box2D / Starling）—— 仅本地保留，不入仓库
 ```
 
 ## 最重要的规则：引擎代码改模板，不要改工作副本
 
-- 引擎源码的**唯一真实来源**是 `Dream Engine\src`（引擎模板目录）。
+- 引擎源码的**唯一真实来源**是 `Aircon Engine\src`（引擎模板目录）。
 - `.workspace\Project` 只是工作副本：Studio 每次启动时 `TemplateCloner`
-  （`Dream Studio\Engine\TemplateCloner.cs`）会**先删除整个目录再整体复制克隆源**（跳过 bin/obj）。
+  （`Aircon Studio\Engine\TemplateCloner.cs`）会**先删除整个目录再整体复制克隆源**（跳过 bin/obj）。
   对 `.workspace` 的任何修改都会在下次启动时被覆盖丢失。
 - **克隆源只是"开箱即用的人工测试工程"，不是真实工程**：它的作用仅仅是让 Studio 启动后立刻有个
   能编译、能运行、能点开各面板的项目，免去每次手动选项目；指向哪个工程随当前开发阶段而定，
-  改 `EnginePaths.TemplateSourcePath`（`Dream Studio\Engine\EnginePaths.cs`）一行即可切换。
-  它和上面的"引擎模板目录 `Dream Engine`"是两回事。
-- 因此所有 `.as` 文件的改动必须落在 `Dream Engine\` 下，改 `.workspace` 等于没改。
-- **克隆源自带的引擎副本要当成镜像看**：`FlappyTest\src\dream\engine\**` 是引擎源码的一份镜像
-  （它的 asconfig `source-path` 就是 `src`），工作副本编译的是这份镜像而非 `Dream Engine\src`——
+  改 `EnginePaths.TemplateSourcePath`（`Aircon Studio\Engine\EnginePaths.cs`）一行即可切换。
+  它和上面的"引擎模板目录 `Aircon Engine`"是两回事。
+- 因此所有 `.as` 文件的改动必须落在 `Aircon Engine\` 下，改 `.workspace` 等于没改。
+- **克隆源自带的引擎副本要当成镜像看**：`FlappyTest\src\aircon\engine\**` 是引擎源码的一份镜像
+  （它的 asconfig `source-path` 就是 `src`），工作副本编译的是这份镜像而非 `Aircon Engine\src`——
   改完引擎必须同步镜像（SHA256 应逐字节一致），否则 Studio 跑的还是旧引擎。
 - Studio 启动时会自动用 AIR SDK 的 mxmlc 重新编译引擎（并重新生成 `ComponentIndex.as`），
   无需手动编译；但改完 `.as` 需要**重启 Studio** 才生效。
@@ -33,13 +33,13 @@
 ## 双端消息协议
 
 - Studio ↔ Engine 走 TCP，消息类型常量定义在两处，**必须保持一致**：
-  - C#：`Dream Studio\Engine\Comm\Message.cs`（`MessageTypes`）
-  - AS：`Dream Engine\src\dream\engine\comm\MessageTypes.as`
+  - C#：`Aircon Studio\Engine\Comm\Message.cs`（`MessageTypes`）
+  - AS：`Aircon Engine\src\aircon\engine\comm\MessageTypes.as`
 - Engine handler 均包在 `CONFIG::STUDIO` 条件编译块内（asconfig.json 里 define `CONFIG::STUDIO=true`）。
 
 ## 构建
 
-- Studio：`dotnet build "Dream.Studio.csproj" -c Debug`（工作目录 `Dream Studio\`）
+- Studio：`dotnet build "Aircon.Studio.csproj" -c Debug`（工作目录 `Aircon Studio\`）
 - Engine：由 Studio 启动流程自动编译，无需手动命令。
 - 发布构建（APK / bundle）：由 Studio 构建面板驱动，链路见下节。
 
@@ -63,11 +63,11 @@
   - **参数顺序相反**：桌面签名参数在 `-target` 之前；Android 签名参数必须在 `-target` **之后**。
   - aab 缺 Android SDK 时应在 UI 告警（`RunStageAsync` 里判断 `IsAndroidBundleTarget`）。
 - 配置分两层，不要混：
-  - 工程级 `dream.project.json`（`DreamProjectSettings`）：`build.platform` + 各平台
+  - 工程级 `aircon.project.json`（`AirconProjectSettings`）：`build.platform` + 各平台
     `target` / 架构 / 证书 / 输出路径。
-  - 机器级 `studio.settings.json`（`%LOCALAPPDATA%\Dream Studio\`，`StudioSettings`）：
+  - 机器级 `studio.settings.json`（`%LOCALAPPDATA%\Aircon Studio\`，`StudioSettings`）：
     `AirSdkPath`、`AndroidSdkPath`。
-- 开发证书 `DevCertificate`：`<项目根>\.dream\build\dev-cert.p12`，口令 `dreamdev`，
+- 开发证书 `DevCertificate`：`<项目根>\.aircon\build\dev-cert.p12`，口令 `aircondev`，
   **生成时未设 alias**，`TimestampUrl = "none"`。
 - 描述符与图标：`AppDescriptorPath`（windows / android / iPhone 三套）、`DescriptorSchema.For`、
   `IconSizeCatalog.SizesFor`（air 优先、sdk 备选）；`AdtCapabilities` 后台跑 `adt -help`
@@ -77,7 +77,7 @@
 
 ## 发布构建的运行时启动链路
 
-- 入口是各工程主类（`FlappyTest.as` / 模板 `DreamEngine.as`，两者结构同构），构造顺序：
+- 入口是各工程主类（`FlappyTest.as` / 模板 `AirconEngine.as`，两者结构同构），构造顺序：
   `super() → stage.color → initEcs() → CONFIG::STUDIO{} → if (!isStudioBuild()) 启动运行时`。
 - `initEcs()` 的**系统注册顺序是固定的**：`PhysicsSystem2D → CanvasSystem → RenderSystem → InputSystem`
   （CanvasSystem 早于 RenderSystem，见"相机空间画布"一节）。
@@ -131,7 +131,7 @@
 
 - **运行模式下允许编辑**：Inspector（查看/改值/增删/粘贴组件）、Hierarchy 命令、撤销/重做在运行期间均可用
   （Studio 与引擎两侧的运行门控已移除）。仅场景切换/加载保持运行期禁用（会用存档替换运行中的世界）。
-- 新增引擎组件：继承 `DreamComponent` 放在 `Dream Engine\src` 任意位置即可，
+- 新增引擎组件：继承 `AirconComponent` 放在 `Aircon Engine\src` 任意位置即可，
   `ComponentIndex` 会在编译前自动扫描注册；要求无参构造且短类名非 `Transform`。
   需要 Inspector 显示字段就重写 `getInspectableFields()` / `setFieldValue()`，
   否则组件在 Inspector 中显示为空内容（属正常行为）。

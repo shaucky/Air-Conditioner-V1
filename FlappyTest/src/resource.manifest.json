@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "startupScene": "FlappyDream.space",
+  "startupScene": "FlappyTest.space",
   "resources": [
     { "guid": "df834fe6b1df4ed48d42deb7af002c14", "path": "Art/bird.png", "sprite": null },
     { "guid": "154566fd25d04dd79bc3c8d43dc1d8bd", "path": "Art/pipe_cap.png", "sprite": null },

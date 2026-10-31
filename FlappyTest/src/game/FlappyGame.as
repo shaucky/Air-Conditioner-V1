@@ -1,16 +1,16 @@
 package game
 {
-    import dream.engine.ecs.DreamComponent;
-    import dream.engine.ecs.Element;
-    import dream.engine.input.InputKey;
-    import dream.engine.input.InputManager;
-    import dream.engine.scene.SceneSerializer;
-    import dream.engine.transform.Transform;
-    import dream.engine.ui.Text;
+    import aircon.engine.ecs.AirconComponent;
+    import aircon.engine.ecs.Element;
+    import aircon.engine.input.InputKey;
+    import aircon.engine.input.InputManager;
+    import aircon.engine.scene.SceneSerializer;
+    import aircon.engine.transform.Transform;
+    import aircon.engine.ui.Text;
 
     CONFIG::STUDIO
     {
-        import dream.engine.ecs.FieldInfo;
+        import aircon.engine.ecs.FieldInfo;
     }
 
     /**
@@ -30,7 +30,7 @@ package game
      *
      * 游戏参数（重力、跳跃、管道速度/缺口/间距、管道预制体）可经 Inspector 编辑并随场景序列化。
      */
-    public final class FlappyGame extends DreamComponent
+    public final class FlappyGame extends AirconComponent
     {
         /** 地面（草顶）世界 y，与场景 Grass 元素对齐。 */
         public static const GroundY:Number = 4.1;
@@ -279,7 +279,7 @@ package game
             for (var i:int = 0; i < _pipes.length; i++)
                 positionPipe(_pipes[i], SpawnX + i * pipeSpacing);
 
-            if (_titleText != null) _titleText.setFieldValue("text", "FLAPPY DREAM");
+            if (_titleText != null) _titleText.setFieldValue("text", "FLAPPY TEST");
             if (_hintText != null) _hintText.setFieldValue("text", "点击 / 空格 起飞");
             setUiVisible(true);
         }

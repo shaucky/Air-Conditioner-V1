@@ -2,7 +2,7 @@
 .workspace/
 
 # 第三方库源码（本地保留，不入仓库；仓库用各工程 libs 下预编译的 swc 与随附许可）
-Dream Engine Third Party/
+Aircon Engine Third Party/
 
 # .NET / Avalonia
 [Bb]in/
@@ -13,7 +13,7 @@ Dream Engine Third Party/
 
 # AIR / ActionScript 构建产物
 FlappyTest/build/
-.dream/
+.aircon/
 *.swf
 *.swf.meta
 adl*.log

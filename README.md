@@ -1,6 +1,6 @@
-# Dream
+# Air Conditioner
 
-Dream 是一个 2D 游戏引擎，由 **Dream Studio**（项目编辑器）与 **Dream Engine**（运行时框架）两部分组成。
+Air Conditioner 是一个 2D 游戏引擎，由 **Aircon Studio**（项目编辑器）与 **Aircon Engine**（运行时框架）两部分组成。
 前者负责可视化编辑，后者负责把编辑结果变成可发布的游戏。
 
 引擎采用 **ECS**（Entity-Component-System）架构，运行在 **AIR 50.0** 之上，通过 Stage3D（Starling）
@@ -16,7 +16,7 @@ Dream 是一个 2D 游戏引擎，由 **Dream Studio**（项目编辑器）与 *
 
 ## 组成部分
 
-### Dream Studio
+### Air Conditioner Studio
 
 基于 [Avalonia](https://avaloniaui.net/) 构建的跨平台项目编辑器，提供完整的可视化编辑能力：
 
@@ -30,12 +30,12 @@ Dream 是一个 2D 游戏引擎，由 **Dream Studio**（项目编辑器）与 *
 
 - **运行期可编辑**：运行状态下依然可以改值、增删组件、执行撤销/重做，改动立即生效，方便调参。
 
-### Dream Engine
+### Air Conditioner Engine
 
 基于 [AIR](https://airsdk.harman.com/) 的游戏开发框架，采用 ECS 架构，
 提供易维护的框架设计与现代的游戏引擎开发体验。引擎集成了若干开源库，包括 Starling 与 Box2D。
 
-- **ECS 核心**：`Element` / `DreamComponent` / `DreamSystem` / `World`，组件在编译前自动扫描注册，
+- **ECS 核心**：`Element` / `AirconComponent` / `AirconSystem` / `World`，组件在编译前自动扫描注册，
   新增组件只需继承基类并放在源码目录下。
 
 - **渲染**：基于 Stage3D 的精灵渲染，支持精灵图集、相机与缩放，以及屏幕空间 / 世界空间 /
@@ -57,15 +57,15 @@ Dream 是一个 2D 游戏引擎，由 **Dream Studio**（项目编辑器）与 *
 
 ## 编辑器功能
 
-除场景视图外，Dream Studio 提供以下面板：
+除场景视图外，Aircon Studio 提供以下面板：
 
 | 面板        | 用途                                            |
 | --------- | --------------------------------------------- |
 | Hierarchy | 查看元素层级，支持创建、删除、重命名等操作                         |
 | Inspector | 查看与修改元素及组件的字段值，支持增删、启停与粘贴组件                   |
 | Project   | 浏览项目资源，处理 `.meta` 与 GUID、图集打包、纹理切片，并支持拖拽到其他面板 |
-| Clip      | 曲线编辑动画片段（`.dmclip`）：轨道 × 时间轴，增删关键帧与编辑数值       |
-| Animator  | 编辑动画状态机（`.dmanimator`）：状态、参数与过渡条件             |
+| Clip      | 曲线编辑动画片段（`.acclip`）：轨道 × 时间轴，增删关键帧与编辑数值       |
+| Animator  | 编辑动画状态机（`.acanimator`）：状态、参数与过渡条件             |
 | Audio     | 调整主音量与内置混音组音量，实时作用于正在播放的声音                    |
 | Console   | 查看引擎运行日志                                      |
 | Build     | 配置并执行发布构建                                     |
@@ -76,9 +76,9 @@ Dream 是一个 2D 游戏引擎，由 **Dream Studio**（项目编辑器）与 *
 
 ## 快速上手
 
-1. **准备 AIR SDK**：Dream Engine 依赖 Harman 提供的 AIR SDK。因其许可不允许再分发，
+1. **准备 AIR SDK**：Aircon Engine 依赖 Harman 提供的 AIR SDK。因其许可不允许再分发，
    需要你自行获取安装，然后在 Studio 的 **Help → Settings** 中配置路径。
-2. **打开工程**：用 Dream Studio 打开 Dream 工程，即可开始编辑、运行与调试。
+2. **打开工程**：用 Aircon Studio 打开 Aircon 工程，即可开始编辑、运行与调试。
    引擎会在 Studio 启动流程中自动编译，无需手动执行编译命令。
 3. **发布构建**：在 **Build** 菜单中按目标平台配置并打包。打包 AAB 时还需在设置中额外指定 Android SDK 路径。
 
@@ -88,7 +88,7 @@ Dream 是一个 2D 游戏引擎，由 **Dream Studio**（项目编辑器）与 *
 
 ### V1：完整的 2D 游戏开发能力
 
-目标是让一个 2D 小游戏从编辑到发布可以只用 Dream 一套工具完成，发布平台为 Windows 与 Android。
+目标是让一个 2D 小游戏从编辑到发布可以只用 Air Conditioner 一套工具完成，发布平台为 Windows 与 Android。
 
 | 能力                                              | 现状                                            |
 | ----------------------------------------------- | --------------------------------------------- |
@@ -111,11 +111,11 @@ V2 计划把渲染层从现有实现迁移到自研的渲染层，利用 **AIR 5
 
 ## 致谢
 
-Dream 建立在众多开源项目与工具之上：
+Air Conditioner 建立在众多开源项目与工具之上：
 
-- **Avalonia 11.3** —— 驱动 Dream Studio 的跨平台 UI 框架。
+- **Avalonia 11.3** —— 驱动 Aircon Studio 的跨平台 UI 框架。
 
-- **Harman AIR SDK** —— Dream Engine 所依赖的运行时 SDK。因许可不允许再分发，
+- **Harman AIR SDK** —— Aircon Engine 所依赖的运行时 SDK。因许可不允许再分发，
   使用者需要自行配置 AIR SDK。
 
 - **Starling 2.8** —— 面向 Stage3D 的高性能 2D 图形框架。

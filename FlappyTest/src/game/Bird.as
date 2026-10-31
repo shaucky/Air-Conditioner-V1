@@ -1,7 +1,7 @@
 package game
 {
-    import dream.engine.ecs.DreamComponent;
-    import dream.engine.transform.Transform;
+    import aircon.engine.ecs.AirconComponent;
+    import aircon.engine.transform.Transform;
 
     /**
      * Flappy 鸟：重力 + 跳跃 + 俯仰展示。
@@ -12,7 +12,7 @@ package game
      *   alive（PLAYING）：重力下落，flap 起跳，随竖直速度俯仰；
      *   !alive（坠落）：撞管后只受重力，转至 90° 贴地为止。
      */
-    public final class Bird extends DreamComponent
+    public final class Bird extends AirconComponent
     {
         /** 竖直速度（世界单位/秒，y 向下为正）。 */
         public var velocity:Number = 0;

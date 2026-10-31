@@ -1,0 +1,17 @@
+{
+	"config": "air",
+	"compilerOptions": {
+		"source-path": [
+			"src"
+		],
+		"library-path": [
+			"libs"
+		],
+		"output": "src/AirconEngine.swf",
+		"define": [
+			{ "name": "CONFIG::STUDIO", "value": true }
+		]
+	},
+	"application": "src/AirconEngine-app.xml",
+	"mainClass": "AirconEngine"
+}

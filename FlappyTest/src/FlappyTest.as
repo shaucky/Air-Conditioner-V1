@@ -2,65 +2,65 @@ package
 {
 	CONFIG::STUDIO
 	{
-		import dream.engine.comm.ChannelEvent;
-		import dream.engine.comm.ClipPreviewHandler;
-		import dream.engine.comm.HierarchyBridge;
-		import dream.engine.comm.InspectorAddComponentHandler;
-		import dream.engine.comm.InspectorEditHandler;
-		import dream.engine.comm.InspectorListComponentsHandler;
-		import dream.engine.comm.InspectorPasteComponentHandler;
-		import dream.engine.comm.InspectorRemoveComponentHandler;
-		import dream.engine.comm.InspectorRequestHandler;
-		import dream.engine.comm.InspectorSetEnabledHandler;
-		import dream.engine.comm.EngineSetRunningHandler;
-		import dream.engine.comm.AudioSettingsHandler;
-		import dream.engine.comm.Message;
-		import dream.engine.comm.MessageDispatcher;
-		import dream.engine.comm.MessageTypes;
-		import dream.engine.comm.PrefabExportHandler;
-		import dream.engine.comm.PrefabRevertHandler;
-		import dream.engine.comm.PrefabSourcesHandler;
-		import dream.engine.comm.SceneLoadHandler;
-		import dream.engine.comm.SceneSaveHandler;
-		import dream.engine.comm.TcpChannel;
-		import dream.engine.comm.handlers.HierarchyCommandHandler;
-		import dream.engine.comm.handlers.PingHandler;
-		import dream.engine.comm.handlers.ResourceIndexHandler;
-		import dream.engine.comm.handlers.SceneRedoHandler;
-		import dream.engine.comm.handlers.SceneUndoHandler;
-		import dream.engine.comm.handlers.SceneSelectHandler;
-		import dream.engine.comm.handlers.SpriteAtlasMapHandler;
-		import dream.engine.comm.InspectorShared;
-		import dream.engine.ecs.Element;
-		import dream.engine.render.CameraComponent;
-		import dream.engine.scene.DocumentOverlay;
-		import dream.engine.scene.SceneSelection;
-		import dream.engine.scene.TransformGizmo;
-		import dream.engine.scene.AudioGizmo;
-		import dream.engine.scene.UndoRedoManager;
-		import dream.engine.transform.Transform;
-		import dream.engine.ui.RectTransform;
+		import aircon.engine.comm.ChannelEvent;
+		import aircon.engine.comm.ClipPreviewHandler;
+		import aircon.engine.comm.HierarchyBridge;
+		import aircon.engine.comm.InspectorAddComponentHandler;
+		import aircon.engine.comm.InspectorEditHandler;
+		import aircon.engine.comm.InspectorListComponentsHandler;
+		import aircon.engine.comm.InspectorPasteComponentHandler;
+		import aircon.engine.comm.InspectorRemoveComponentHandler;
+		import aircon.engine.comm.InspectorRequestHandler;
+		import aircon.engine.comm.InspectorSetEnabledHandler;
+		import aircon.engine.comm.EngineSetRunningHandler;
+		import aircon.engine.comm.AudioSettingsHandler;
+		import aircon.engine.comm.Message;
+		import aircon.engine.comm.MessageDispatcher;
+		import aircon.engine.comm.MessageTypes;
+		import aircon.engine.comm.PrefabExportHandler;
+		import aircon.engine.comm.PrefabRevertHandler;
+		import aircon.engine.comm.PrefabSourcesHandler;
+		import aircon.engine.comm.SceneLoadHandler;
+		import aircon.engine.comm.SceneSaveHandler;
+		import aircon.engine.comm.TcpChannel;
+		import aircon.engine.comm.handlers.HierarchyCommandHandler;
+		import aircon.engine.comm.handlers.PingHandler;
+		import aircon.engine.comm.handlers.ResourceIndexHandler;
+		import aircon.engine.comm.handlers.SceneRedoHandler;
+		import aircon.engine.comm.handlers.SceneUndoHandler;
+		import aircon.engine.comm.handlers.SceneSelectHandler;
+		import aircon.engine.comm.handlers.SpriteAtlasMapHandler;
+		import aircon.engine.comm.InspectorShared;
+		import aircon.engine.ecs.Element;
+		import aircon.engine.render.CameraComponent;
+		import aircon.engine.scene.DocumentOverlay;
+		import aircon.engine.scene.SceneSelection;
+		import aircon.engine.scene.TransformGizmo;
+		import aircon.engine.scene.AudioGizmo;
+		import aircon.engine.scene.UndoRedoManager;
+		import aircon.engine.transform.Transform;
+		import aircon.engine.ui.RectTransform;
 
 		import flash.events.KeyboardEvent;
 		import flash.ui.Keyboard;
 	}
 
 	// 发布构建（CONFIG::STUDIO=false）的启动路径同样需要：产物清单与启动场景都按文件读取。
-	import dream.engine.scene.SceneSerializer;
+	import aircon.engine.scene.SceneSerializer;
 
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
 
-	import dream.engine.ecs.World;
-	import dream.engine.ecs.systems.RenderSystem;
-	import dream.engine.audio.AudioManager;
-	import dream.engine.input.InputManager;
-	import dream.engine.input.InputSystem;
-	import dream.engine.physics2d.PhysicsSystem2D;
-	import dream.engine.render.RenderEngine;
-	import dream.engine.render.ResourceManager;
-	import dream.engine.ui.CanvasSystem;
+	import aircon.engine.ecs.World;
+	import aircon.engine.ecs.systems.RenderSystem;
+	import aircon.engine.audio.AudioManager;
+	import aircon.engine.input.InputManager;
+	import aircon.engine.input.InputSystem;
+	import aircon.engine.physics2d.PhysicsSystem2D;
+	import aircon.engine.render.RenderEngine;
+	import aircon.engine.render.ResourceManager;
+	import aircon.engine.ui.CanvasSystem;
 
 	import flash.desktop.NativeApplication;
 	import flash.display.Sprite;
@@ -224,7 +224,7 @@ package
 			return studio;
 		}
 
-		/** 产物清单文件名：由 Dream Studio 构建时生成，位于应用根目录（app:/）。 */
+		/** 产物清单文件名：由 Aircon Studio 构建时生成，位于应用根目录（app:/）。 */
 		private static const ManifestFileName:String = "resource.manifest.json";
 
 		/**
